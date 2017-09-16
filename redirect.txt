@@ -1,0 +1,2 @@
+Congratulations! The Pirate Talk addon was installed successfully!
+You will now be taken to the page where the addon is located.
