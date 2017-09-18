@@ -75,12 +75,16 @@ class Pirate_Talk
 
 		// Now do some random end of line substitutions / additions
 		$this->_load_shouts();
+
+		// End of sentence shout
 		$this->chance = 5;
-		$this->content = preg_replace_callback('%(\.\s)%', array($this, 'avast'), $this->content);
+		$this->content = preg_replace_callback('%(\.\s)%', array($this, '_avast'), $this->content);
+		$this->content = preg_replace_callback('%(\.$)%', array($this, '_avast'), $this->content);
 
 		// Greater chance after Exclamation or Question Me hearties!
 		$this->chance = 3;
-		$content = preg_replace_callback('%([!\?]\s)%', array($this, 'avast'), $this->content);
+		$this->content = preg_replace_callback('%([\?](?:\s|$))%', array($this, '_avast'), $this->content);
+		$content = preg_replace_callback('%([\!](?:\s|$))%', array($this, '_avast'), $this->content);
 	}
 
 	/**
@@ -213,6 +217,7 @@ class Pirate_Talk
 			'%\bstupid\b%' => 'bamboozled',
 			'%\bSUV\b%i' => 'ship',
 			'%\brv\b%i' => 'great, grand ship',
+			'%\bswmbo\b%' => 'admiral',
 			'%\bsword\b%' => 'cutlass',
 			'%\btarget\b%' => 'Swaggy',
 			'%^[hH]i [tT]here%' => 'ahoy thar',
@@ -284,6 +289,8 @@ class Pirate_Talk
 			'~~1~~ Oho!',
 			'~~1~~ Fetch me spyglass!',
 		);
+
+		shuffle($this->shouts);
 	}
 
 	/**
@@ -306,10 +313,8 @@ class Pirate_Talk
 	 * @param array $matches
 	 * @return string
 	 */
-	private function avast($matches)
+	private function _avast($matches)
 	{
-		shuffle($this->shouts);
-
 		// Use and consume or do nothing, its all chance
 		return (((1 === mt_rand(1, $this->chance)) ? str_replace('~~1~~', $matches[0], array_shift($this->shouts)) : $matches[0]) . ' ');
 	}

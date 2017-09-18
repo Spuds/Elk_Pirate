@@ -35,7 +35,7 @@ function igm_pirate(&$config_vars)
 }
 
 /**
- * Integration hook, Called from bbcparser, integrate_post_bbc_parser,
+ * Integration hook, Called from bbcparser, integrate_post_bbc_parser (1.1) / integrate_post_parsebbc (1.0),
  *
  * - Allows access to the message after the BBC parser has run on it
  *
