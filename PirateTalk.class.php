@@ -51,9 +51,11 @@ class Pirate_Talk
 	 */
 	public function canRender()
 	{
-		global $context, $modSettings;
+		global $context, $modSettings, $user_info;
 
 		return (!empty($modSettings['elk_pirate_enabled'])
+			&& date('md') === '0919'
+			&& $user_info['is_guest'] === false
 			&& in_array($context['site_action'], array('display', 'messageindex', 'boardindex')));
 	}
 
@@ -105,7 +107,7 @@ class Pirate_Talk
 			'%\bit&#039;s\b%' => '&#039;tis',
 			'%\bshe&#039;s\b%' => 'she be',
 			'%\bwasn&#039;t\b%' => 'weren&#039;t',
-			'%\b(\w+)&#039;s (\w+)ing\b%' => '%1 be %2in&#039;',
+			'%\b(\w+)&#039;s (\w+)ing\b%' => '\\1 be \\2in&#039;',
 			'%\bairplane\b%' => 'flying machine',
 			'%\bam\b%' => 'be',
 			'%\bare\b%' => 'be',
@@ -148,6 +150,7 @@ class Pirate_Talk
 			'%\bflagged\b%' => 'black marked',
 			'%\bflag\b%' => 'Jolly Roger',
 			'%\bfood\b%' => 'chow',
+			'%\bforward\b%' => 'stern', 
 			'%\bfor\b%' => 'fer',
 			'%\bfriends\b%' => 'maties',
 			'%\bfriend\b%' => 'matey',
@@ -184,6 +187,7 @@ class Pirate_Talk
 			'%\blady\b%' => 'wench',
 			'%\blet&#039;s\b%' => 'let us',
 			'%\bloot\b%' => 'booty',
+			'%\blol\b%i' => 'Yo-ho-ho',
 			'%\bmachine\b%' => 'contraption',
 			'%\bmanager\b%' => 'admiral',
 			'%\bman\b%' => 'lubber',
