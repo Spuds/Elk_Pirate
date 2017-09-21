@@ -56,6 +56,7 @@ class Pirate_Talk
 		return (!empty($modSettings['elk_pirate_enabled'])
 			&& date('md') === '0919'
 			&& $user_info['is_guest'] === false
+			&& !empty($context['site_action'])
 			&& in_array($context['site_action'], array('display', 'messageindex', 'boardindex')));
 	}
 
@@ -98,14 +99,12 @@ class Pirate_Talk
 		$this->patterns = array(
 			'%\bawesome\b%' => 'bountifully bombastic',
 			'%\bdidn&#039;t know\b%' => 'did nay know',
-			'%\bdidnt know\b%' => 'did nay know',
 			'%\bdidn&#039;t\b%' => 'di&#039;nae',
 			'%\bdon&#039;t know\b%' => 'dinna',
 			'%\bdont know\b%' => 'dinna',
 			'%\bdon&#039;t\b%' => 'dern&#039;t',
 			'%\bdont\b%' => 'dernt',
 			'%\bhadn&#039;t\b%' => 'ha&#039;nae',
-			'%\bhadnt\b%' => 'ha&#039;nae',
 			'%\bhaven&#039;t\b%' => 'ha&#039;nae',
 			'%\bhavent\b%' => 'ha&#039;nae',
 			'%\bhe&#039;s\b%' => 'he be',
@@ -135,7 +134,7 @@ class Pirate_Talk
 			'%\bcents\b%' => 'shillings',
 			'%\bcheat\b%' => 'hornswaggle ',
 			'%\bchildren\b%' => 'little sandcrabs',
-			'%\bgrand children\b%' => 'grand little sandcrabs',
+			'%\bgrandkids\b%' => 'grand little sandcrabs',
 			'%\bcoin\b%' => 'pieces of eight',
 			'%\bcogg\b%' => 'that pot &#039;o gold cogg',
 			'%\bco[-]?workers\b%' => 'shipmates',
